@@ -3,6 +3,7 @@
     import Body        from './Body.svelte';
     import Biographies from './Biographies.svelte';
     import BadView     from './BadView.svelte';
+    // import Bio from './Bio.svelte';
 
     export let theImmigrants;
     export let person;
@@ -55,12 +56,15 @@
 <Body   {theImmigrants} 
         on:mouseclicked={handleClick} 
         on:biorequested={handleBioRequest}
-        />
+/>
 
 {:else if domView=='bio'}
-<Biographies {person} {theImmigrants}/>
+<Biographies {person} {theImmigrants} />
+<!-- <Bio {person} /> -->
   
 {:else}
-<BadView {domView} on:mouseclicked={handleClick} />
+<BadView    {domView} 
+            on:mouseclicked={handleClick} 
+/>
 
 {/if}

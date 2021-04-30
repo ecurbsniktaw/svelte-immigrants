@@ -1,16 +1,22 @@
 <script>
-// PersonHeader.svelte
-// -------------------
 //
 // Display info for an individual: thumbnail pic, birth and death dates, etc.
 //
 
 export let person;
 
+//  Convert a mySQL date into a javascript date.
   const jsDate = (mySqlDate) => {
     return new Date(mySqlDate + ' 13:00:00');
   }
 
+//  Given a mySQL date and a modifier tag, return one of:
+//  . The date as a string
+//  . Just the year
+//  . 'before ' followed by the year
+//  . 'after '  followed by the year
+//  . 'about '  followed by the year
+//  . '?'
   const toJsDate = (mySqlDate, dateModifier) => {
     let theDate = new Date(mySqlDate + ' 13:00:00');
     let theYear = theDate.getFullYear();
@@ -23,6 +29,7 @@ export let person;
     return rslt;
   }
 
+//  Return a person's age on a given day, or return '?'
   function getAge(birthday, birthMod, thisDay, thisMod) {
     let age ='';
     if (birthMod=='unknown' || thisMod=='unknown') {

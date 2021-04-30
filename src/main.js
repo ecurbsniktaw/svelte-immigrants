@@ -1,25 +1,35 @@
 //
-//	Immigrant Ancestors
-//	-------------------
-//	This SPA consolidates information about Bruce and Paula's immigrant ancestors.
-//	An API call in this file retrieves the data, which is stored in a MySQL database.
-//	[[ INFO ABOUT EDITING THE DATA ]]
+//	** IMMIGRANT ANCESTORS SPA **
+//
+//	This single page app displays information about Bruce and Paula's immigrant ancestors. 
+//	The API call in this file retrieves the data, which is stored in two tables in a 
+//	MySQL database. Those tables can be edited here:
+//		https://brucewatkins.org/ancestry/data.php#
 //
 //	Libraries used:
-//	 o The bootstrap css (imported in this file).
-//	 o A Svelte bootstrap library. [[ LINK TO REPO, WHERE IMPORTED ]]
-//	[[ MARKDOWN LIB ]]
+//	 o The bootstrap minified css (imported below).
+//	 o A Svelte library, sveltestrap, that reproduces bootstrap behavior. 
+//	   To install sveltestrap, this command was executed in the local project directory:
+//		npm install --save sveltestrap svelte
+//	 o A markdown library, marked, installed with this command:
+//		npm install -g marked
+
 //
+//	To Consider: Move the API fetch out of this file and into the
+//	App component, displaying a "loading" message until the promise
+//	resolves.
 
+// Import Bootstrap CSS library and the App component.
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import App from './App.svelte';
 
-// Get the family data from the database via our PHP routine.
-const URL = "https://brucewatkins.org/apis/immFamilies.php";
-
+// The theImmigrants object will contain data for each individual.
 export let theImmigrants = {};
 
+// Get the immigrant data from the database via our PHP routine. This is
+// done using an async API fetch. We wait until the promise has resolved
+// before creating the App. 
+const URL = "https://brucewatkins.org/apis/immFamilies.php";
 fetch(URL)
     .then((response) => response.json())
 	.then((immigrants) => 

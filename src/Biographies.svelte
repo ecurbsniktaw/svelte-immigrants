@@ -10,10 +10,12 @@
     let theName = thisPerson.name;
     let born    = thisPerson.bornDate;
     let died    = thisPerson.diedDate;
+    let picURL  = thisPerson.picURL;
 </script>
 
 <h2>Biography of {theName}</h2>
 <h3>{born.substring(0,4)} - {died.substring(0,4)}</h3>
+<img class="float-left mr-2" src="{picURL}" alt="personImage" width=100>
 {@html marked(theBio)}
 
 <style>
