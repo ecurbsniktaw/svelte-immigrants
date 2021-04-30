@@ -13,7 +13,6 @@
 
 	function resetDisplay () {
         domView = 'body';
-        domValue['personNdx'] = 'unknown';
 	}
 
 	function handleClick(event) {

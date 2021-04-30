@@ -7,17 +7,7 @@
 
 export let person;
 
-import { Col, Container, Row } from 'sveltestrap';
-    import {
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    CardSubtitle,
-    CardText,
-    CardTitle
-  } from 'sveltestrap';  const jsDate = (mySqlDate) => {
+  const jsDate = (mySqlDate) => {
     return new Date(mySqlDate + ' 13:00:00');
   }
 
@@ -34,7 +24,6 @@ import { Col, Container, Row } from 'sveltestrap';
   }
 
   function getAge(birthday, birthMod, thisDay, thisMod) {
-    // var thisDay = new Date();
     let age ='';
     if (birthMod=='unknown' || thisMod=='unknown') {
         age = '?';
@@ -51,8 +40,6 @@ import { Col, Container, Row } from 'sveltestrap';
 
     return age;
 }
-
-
 
 </script>
 

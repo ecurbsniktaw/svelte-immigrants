@@ -1,7 +1,7 @@
 <script>
 
 // Get the Bootstrap components
-    import { Col, Container, Row } from 'sveltestrap';
+    import { Col, Row } from 'sveltestrap';
     import {
     Card,
     CardBody,
@@ -12,8 +12,6 @@
     import PersonHeader from './PersonHeader.svelte';
 
 // Declare the props
-    export let intro;
-    export let relationship;
     export let people;
 
     import { createEventDispatcher } from "svelte";

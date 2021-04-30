@@ -5,15 +5,15 @@
     export let person;
 </script>
 
-    <Row>
+<Row>
 
-        <Col xs="3">
-            <img class="thumbNail" src="{person.picURL}" alt="personImage" width=100><br>
-            <p class="bio"><PersonHeader {person} /></p>
-        </Col>
+    <Col xs="3">
+        <img class="thumbNail" src="{person.picURL}" alt="personImage" width=100><br>
+        <p class="bio"><PersonHeader {person} /></p>
+    </Col>
 
-        <Col xs="8">
-            {@html marked(person.bio)}
-        </Col>
+    <Col xs="8">
+        {@html marked(person.bio)}
+    </Col>
 
-    </Row>
+</Row>

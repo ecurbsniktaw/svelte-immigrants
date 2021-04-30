@@ -27,5 +27,5 @@
             on:biorequested={handleBioRequest}
         />
     </div>
-
+    <hr>
 {/each}
