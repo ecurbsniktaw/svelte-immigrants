@@ -1,12 +1,15 @@
+<!-- 
+    APP COMPONENT: This is the main component for the Immigrant Ancestors app.
+ -->
 <script>
-    import Navbar      from "./Navbar.svelte";
-    import Body        from './Body.svelte';
-    import Biographies from './Biographies.svelte';
-    import BadView     from './BadView.svelte';
-    // import Bio from './Bio.svelte';
+    import Navbar    from "./Navbar.svelte";
+    import Home      from './Home.svelte';
+    import Biography from './Biography.svelte';
+    import About     from './About.svelte';
+    import BadView   from './BadView.svelte';
 
-    export let theImmigrants;
-    export let person;
+    export let theImmigrants;   // This is defined in main.js
+    export let person;          // This is passed to the Biography component
 
     let domView;
     person = "unknown";
@@ -16,6 +19,7 @@
         domView = 'body';
 	}
 
+    //  Handle click events that bubble up from inner components.
 	function handleClick(event) {
 		let whatHappened = event.detail.what;
 		let whatValue    = event.detail.value;
@@ -41,30 +45,47 @@
 		}
     }
     
+    //  Handle an event that requested display of an immigrant's biography
     function handleBioRequest(event) {
         person = event.detail;
         domView = "bio";
     }
 
+    //  When the component loads, display the home page.
 	resetDisplay();
 
 </script>
 
-<Navbar on:mouseclicked={handleClick} />
+<!-- 
+    Display the navigation bar, and then either the home page that
+    shows all the immigrants, or display the biography of one immigrant.
+ -->
+
+<Navbar 
+    on:mouseclicked={handleClick} 
+/>
 
 {#if domView=='body'}
-<Body   {theImmigrants} 
-        on:mouseclicked={handleClick} 
-        on:biorequested={handleBioRequest}
+<Home
+    {theImmigrants} 
+    on:mouseclicked={handleClick} 
+    on:biorequested={handleBioRequest}
 />
 
 {:else if domView=='bio'}
-<Biographies {person} {theImmigrants} />
-<!-- <Bio {person} /> -->
+<Biography
+    {person} 
+    {theImmigrants} 
+/>
+  
+{:else if domView=='about'}
+<About
+/>
   
 {:else}
-<BadView    {domView} 
-            on:mouseclicked={handleClick} 
+<BadView
+    {domView} 
+    on:mouseclicked={handleClick} 
 />
 
 {/if}

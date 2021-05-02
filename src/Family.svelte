@@ -1,8 +1,10 @@
+<!-- 
+    FAMILY COMPONENT: Displays a card for each member of an immigrant family.
+ -->
 <script>
-    import { Col, Row,  Card, CardBody, CardText} from 'sveltestrap';
+    import { Col, Row, Card, CardBody, CardText} from 'sveltestrap';
     import PersonHeader from './PersonHeader.svelte';
 
-// Declare the props
     export let people;
 
 //  When a show-bio link is clicked, raise a biorequested event.
@@ -37,7 +39,7 @@
                         <a
                         href
                         on:click|preventDefault={()=>bioRequested(person.perID)}>
-                        Show Bio
+                        Biography
                         </a>                    
                     </Card>
 

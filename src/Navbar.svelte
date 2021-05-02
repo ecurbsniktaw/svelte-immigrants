@@ -1,3 +1,6 @@
+<!-- 
+    NAVBAR COMPONENT
+ -->
 <script>
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
@@ -21,6 +24,14 @@
           href
           on:click|preventDefault={()=>mouseClicked('switchView', 'body')}>
           Home
+        </a>
+    </li>
+
+    <li>
+        <a
+          href
+          on:click|preventDefault={()=>mouseClicked('switchView', 'about')}>
+          About
         </a>
     </li>
 

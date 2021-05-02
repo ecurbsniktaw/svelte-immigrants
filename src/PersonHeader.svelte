@@ -1,3 +1,7 @@
+<!-- 
+    PERSONHEADER COMPONENT
+    Display info for an individual: thumbnail pic, birth and death dates, etc.
+ -->
 <script>
 //
 // Display info for an individual: thumbnail pic, birth and death dates, etc.
