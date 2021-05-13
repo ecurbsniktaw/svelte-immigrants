@@ -2,9 +2,6 @@
     BADVIEW COMPONENT: This component should never be used...
  -->
 <script>
-import App from "./App.svelte";
-
-
     export let domView;
 </script>
 

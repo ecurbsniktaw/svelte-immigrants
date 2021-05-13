@@ -24,10 +24,12 @@
 
 <Container>
 
+<h3>Bruce and Paula's Immigrant Ancestors</h3>
+
 <!-- Walk through the data family by family -->
 {#each theImmigrants as thisFamily}
-    <div>
-        <p class="intro">{thisFamily.intro}</p>
+    <div class="p-2 mb-4 familyBorder rounded shadow">
+        <p class="intro">{@html thisFamily.intro}</p>
         <Family 
             people={thisFamily.people}
             on:mouseclicked={handleClick} 
@@ -36,10 +38,20 @@
     </div>
 {/each}
 
+<div>&nbsp;</div>
+
 </Container>
 
 <style>
     .intro {
-        font-weight: bold;
+        /* font-weight: bold; */
+        /* border: 1px solid black; */
+        margin-bottom: 0;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 1.1rem;
+    }
+
+    .familyBorder {
+        border: 1px solid #DDD;
     }
 </style>

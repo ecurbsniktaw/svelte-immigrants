@@ -70,9 +70,9 @@ Arrived
 <br>
 
 Died 
-{toJsDate(person.diedDate, person.diedDateMod)}, 
-{person.diedWhere}
-<br>
+{toJsDate(person.diedDate, person.diedDateMod)}
+<!-- , {person.diedWhere} -->
+<!-- <br> -->
 
 at age 
 {getAge(jsDate(person.bornDate), person.bornDateMod, 

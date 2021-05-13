@@ -21,7 +21,8 @@
 
 {#if thisPerson.bio.length>0}
 <div class="bioP">
-{@html marked(thisPerson.bio)}
+<!-- {@html marked(thisPerson.bio)} -->
+{@html thisPerson.bio}
 </div>
 
 {:else}

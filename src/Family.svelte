@@ -15,7 +15,7 @@
     }
 </script>
 
-<Card class="mb-5 border-0">
+<Card class="mb-1 border-0">
     <CardBody>
         <CardText>
             <Row>
@@ -26,22 +26,27 @@
                 <Col xs="6">
 
                     <!-- Each person has a card with a drop shadow -->
-                    <Card class="p-2 mb-2 border-light shadow">
+                    <div class="personCard">
+                    <!-- <Card> -->
                         <Row>
                             <!-- Col 1: thumbnail photo -->
                             <Col xs="3">
                                 <img class="float-left" src="{person.picURL}" alt="personImage" width=100>
                             </Col>
                             <!-- Col 2: born, arrived, died -->
-                            <Col xs="9"> <PersonHeader {person} /> </Col>    
+                            <Col xs="9"> <PersonHeader {person} /> </Col> 
+                               
                         </Row>
                         <!-- Below the photo, a link to the person's bio -->
-                        <a
-                        href
-                        on:click|preventDefault={()=>bioRequested(person.perID)}>
-                        Biography
-                        </a>                    
-                    </Card>
+                        {#if person.bio.length > 0}
+                         <a
+                         href
+                         on:click|preventDefault={()=>bioRequested(person.perID)}>
+                         View Biography
+                         </a>       
+                        {/if}
+                    <!-- </Card> -->
+                </div>
 
                 </Col>
 
@@ -51,3 +56,9 @@
         </CardText>
     </CardBody>
 </Card>
+
+<style>
+    .personCard {
+        border: 1px solid #FFF;
+    }
+</style>

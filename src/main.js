@@ -25,6 +25,7 @@ import App from './App.svelte';
 
 // The theImmigrants object will contain data for each individual.
 export let theImmigrants = {};
+export let thePopImages  = {};
 
 // Get the immigrant data from the database via our PHP routine. This is
 // done using an async API fetch. We wait until the promise has resolved
@@ -34,11 +35,13 @@ fetch(URL)
     .then((response) => response.json())
 	.then((immigrants) => 
 	{
-		theImmigrants = immigrants;
+		thePopImages  = immigrants[0];
+		theImmigrants = immigrants[1];
 		const app = new App({
 			target: document.body,
 			props: {
-				theImmigrants: theImmigrants
+				theImmigrants: theImmigrants,
+				thePopImages
 			}
 		});
 	})
