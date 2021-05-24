@@ -1,64 +1,44 @@
-<!-- 
-    FAMILY COMPONENT: Displays a card for each member of an immigrant family.
- -->
 <script>
+    //-------------------------------------------------------------------------------------
+    // Import our PersonHeader component, several components from SvelteStrap and the 
+    // function from Svelte for raising custom events. Declare the prop we receive 
+    // containing data for people in a family.
+    import PersonHeader                          from './PersonHeader.svelte';
+    import { createEventDispatcher }             from 'svelte';
     import { Col, Row, Card, CardBody, CardText} from 'sveltestrap';
-    import PersonHeader from './PersonHeader.svelte';
-
     export let people;
 
-//  When a show-bio link is clicked, raise a biorequested event.
-    import { createEventDispatcher } from "svelte";
+    //-------------------------------------------------------------------------------------
+    // When a show-biography link is clicked, bundle up the parameters from the link and
+    // raise a custom event. This will be caught by the Home component, which will bubble
+    // it up to the App component.
     const dispatch = createEventDispatcher();
-    function bioRequested(personID) {
-        dispatch("biorequested", personID);
+    function mouseClicked(what, value, name) {
+        let eventObj = {
+            what: what,
+            value: value,
+            name: name
+        }
+        dispatch("mouseclicked", eventObj);
     }
 </script>
 
-<Card class="mb-1 border-0">
+<Card class="mb-1">
     <CardBody>
         <CardText>
             <Row>
-
-                <!-- Generate a card for each person in this family -->
                 {#each people as person}
-
                 <Col xs="6">
-
-                    <!-- Each person has a card with a drop shadow -->
-                    <div class="personCard">
-                    <!-- <Card> -->
+                    <div>
                         <Row>
-                            <!-- Col 1: thumbnail photo -->
-                            <Col xs="3">
-                                <img class="float-left" src="{person.picURL}" alt="personImage" width=100>
-                            </Col>
-                            <!-- Col 2: born, arrived, died -->
+                            <Col xs="3"> <img src="{person.picURL}" alt="personImage" width=100> </Col>
                             <Col xs="9"> <PersonHeader {person} /> </Col> 
-                               
                         </Row>
-                        <!-- Below the photo, a link to the person's bio -->
-                        {#if person.bio.length > 0}
-                         <a
-                         href
-                         on:click|preventDefault={()=>bioRequested(person.perID)}>
-                         View Biography
-                         </a>       
-                        {/if}
-                    <!-- </Card> -->
-                </div>
-
+                         <a href on:click|preventDefault={()=>mouseClicked('showBio', person.shortName)}>View Biography</a>       
+                    </div>
                 </Col>
-
-                {/each} <!-- end of loop on all people in this couple -->
-
+                {/each}
             </Row>
         </CardText>
     </CardBody>
 </Card>
-
-<style>
-    .personCard {
-        border: 1px solid #FFF;
-    }
-</style>

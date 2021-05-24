@@ -1,57 +1,50 @@
-<!-- 
-    HOME COMPONENT
-    This is the home page that displays when the app loads, and also
-    when the 'Home' link on the navigation bar is clicked.
- -->
 <script>
+    //-------------------------------------------------------------------------------------
+    // Import our Family component and SeveteStrap's Container component. Declare the prop
+    // containing immigrant data that we receive from the App component. We also need a
+    // function from Svelte for raising custom events.
+    import Family                    from './Family.svelte'
+    import { Container }             from 'sveltestrap';
+    import { createEventDispatcher } from 'svelte';
     export let theImmigrants;
-    import { Container } from 'sveltestrap';
-    import Family from './Family.svelte'
 
-//  When the Family component raises a mouseclicked event
-//  or a biorequested event, bubble that event up to the 
-//  App component, where it will be handled.
-    import { createEventDispatcher } from "svelte";
+    //-------------------------------------------------------------------------------------
+    // If we get a mouseclicked event (raised in the Family component), bubble that event 
+    // up to the App component, where it will be handled.
     const dispatch = createEventDispatcher();
 	function handleClick(event) {
         dispatch("mouseclicked", event.detail);
     }
-    function handleBioRequest(event) {
-        dispatch("biorequested", event.detail)
-    }
-
 </script>
 
 <Container>
 
-<h3>Bruce and Paula's Immigrant Ancestors</h3>
+    <h3>Bruce and Paula's Immigrant Ancestors</h3>
 
-<!-- Walk through the data family by family -->
-{#each theImmigrants as thisFamily}
-    <div class="p-2 mb-4 familyBorder rounded shadow">
-        <p class="intro">{@html thisFamily.intro}</p>
-        <Family 
-            people={thisFamily.people}
-            on:mouseclicked={handleClick} 
-            on:biorequested={handleBioRequest}
-        />
-    </div>
-{/each}
+    {#each theImmigrants as thisFamily}
+        <div class="family rounded shadow">
+            <p class="intro">{@html thisFamily.intro}</p>
+            <Family people={thisFamily.people} on:mouseclicked={handleClick} />
+        </div>
+    {/each}
 
-<div>&nbsp;</div>
+    <div>&nbsp;</div>
 
 </Container>
 
 <style>
     .intro {
-        /* font-weight: bold; */
-        /* border: 1px solid black; */
-        margin-bottom: 0;
+        margin-bottom: 1rem;
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 1.1rem;
     }
 
-    .familyBorder {
+    .family {
         border: 1px solid #DDD;
+        width: 85%; 
+        margin-left: auto; 
+        margin-right: auto;
+        margin-bottom: 2rem;
+        padding: 1rem;
     }
 </style>

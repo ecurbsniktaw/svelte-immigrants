@@ -1,6 +1,3 @@
-<!-- 
-    BADVIEW COMPONENT: This component should never be used...
- -->
 <script>
     export let domView;
 </script>
